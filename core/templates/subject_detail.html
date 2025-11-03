@@ -68,9 +68,26 @@
         a.back-link:hover {
             text-decoration: underline;
         }
+        .subject-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <nav style="background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.05); padding: 15px 0; margin-bottom: 30px;">
+        <div class="container" style="max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <a href="{% url 'home' %}" style="font-size: 1.4em; font-weight: 700; color: #0f172a; text-decoration: none;">
+                🎓 EduGuide CU
+            </a>
+            <div>
+                <a href="{% url 'home' %}" style="margin-right: 20px; color: #3b82f6; text-decoration: none;">Home</a>
+                <a href="#" style="color: #64748b; text-decoration: none;">About</a>
+            </div>
+        </div>
+    </nav>
     <div class="container">
         <a href="{% url 'home' %}" class="back-link">← Back to Subjects</a>
         
@@ -98,7 +115,7 @@
                             </iframe>
                         </div>
                     {% elif resource.resource_type == 'pdf' and resource.pdf_file %}
-                        <p>PDF support coming soon!</p>
+                        <a href="{{ resource.pdf_file.url }}" class="pdf-link" target="_blank">📄 Download PDF Notes</a>
                     {% endif %}
                 {% endfor %}
             {% else %}
@@ -106,5 +123,10 @@
             {% endif %}
         </div>
     </div>
+<!-- Footer -->
+<footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: center; color: #64748b; font-size: 0.9em;">
+    <p>Made with ❤️ by <strong>Anirban</strong> for CSE Students, Chandigarh University</p>
+    <p>© 2025 EduGuide CU. All rights reserved.</p>
+</footer>
 </body>
 </html>

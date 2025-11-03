@@ -56,10 +56,42 @@
             color: #475569;
             font-size: 0.95em;
         }
+        .subject-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <nav style="background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.05); padding: 15px 0; margin-bottom: 30px;">
+        <div class="container" style="max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <a href="{% url 'home' %}" style="font-size: 1.4em; font-weight: 700; color: #0f172a; text-decoration: none;">
+                🎓 EduGuide CU
+            </a>
+            <div>
+                <a href="{% url 'home' %}" style="margin-right: 20px; color: #3b82f6; text-decoration: none;">Home</a>
+                <a href="#" style="color: #64748b; text-decoration: none;">About</a>
+            </div>
+        </div>
+    </nav>
     <div class="container">
+        <form method="get" style="margin-bottom: 25px; text-align: center;">
+            <input
+            type="text"
+            name="q"
+            placeholder="Search subjects (e.g., Physics, Maths)..."
+            value="{{ query }}"
+            style="padding: 10px; width: 100%; max-width: 500px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem;"
+            >
+            <button type="submit" style="margin-top: 10px; padding: 8px 16px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                🔍 Search
+            </button>
+            {% if query %}
+                <a href="{% url 'home' %}" style="margin-left: 10px; color: #ef4444; text-decoration: none;">Clear</a>
+            {% endif %}
+        </form>
         <header>
             <h1>🎓 EduGuide CU</h1>
             <p>Your Academic Companion for CSE at Chandigarh University</p>
@@ -86,5 +118,10 @@
             <p>No EST subjects added yet.</p>
         {% endif %}
     </div>
+<!-- Footer -->
+<footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: center; color: #64748b; font-size: 0.9em;">
+    <p>Made with ❤️ by <strong>Anirban</strong> for CSE Students, Chandigarh University</p>
+    <p>© 2025 EduGuide CU. All rights reserved.</p>
+</footer>
 </body>
 </html>
