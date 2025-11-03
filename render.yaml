@@ -1,0 +1,14 @@
+version: "1"
+services:
+  - type: web
+    name: eduguide-cu
+    env: python
+    region: oregon
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    startCommand: "gunicorn eduguide.wsgi:application"
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        generateValue: true
+    healthCheckPath: /
