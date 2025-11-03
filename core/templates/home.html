@@ -69,15 +69,17 @@
         {% if subjects %}
             <div class="subject-list">
                 {% for subject in subjects %}
-                <div class="subject-card">
-                    <div>
-                        <span class="subject-name">{{ subject.name }}</span>
-                        <span class="exam-tag">{{ subject.get_exam_type_display }}</span>
-                    </div>
-                    {% if subject.description %}
-                        <div class="description">{{ subject.description }}</div>
-                    {% endif %}
-                </div>
+                    <a href="{% url 'subject_detail' subject.id %}" style="text-decoration: none; color: inherit;">
+                        <div class="subject-card">
+                            <div>
+                                <span class="subject-name">{{ subject.name }}</span>
+                                <span class="exam-tag">{{ subject.get_exam_type_display }}</span>
+                            </div>
+                            {% if subject.description %}
+                                <div class="description">{{ subject.description }}</div>
+                            {% endif %}
+                        </div>
+                    </a>
                 {% endfor %}
             </div>
         {% else %}

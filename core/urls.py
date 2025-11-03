@@ -2,5 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.home, name='home'),  # ← Maps the root URL to your home view
+    path('', views.home, name='home'),
+    path('subject/<int:subject_id>/', views.subject_detail, name='subject_detail'),
 ]
