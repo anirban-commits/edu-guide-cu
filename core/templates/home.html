@@ -7,38 +7,82 @@
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
-            background: #f8fafc;
+            background: #f1f5f9;
             margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            padding: 20px;
             color: #1e293b;
         }
         .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        header {
             text-align: center;
-            padding: 2rem;
-            border-radius: 12px;
-            background: white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            max-width: 600px;
+            margin-bottom: 30px;
         }
         h1 {
             color: #0f172a;
         }
-        p {
+        h2 {
+            margin-top: 30px;
+            color: #1e293b;
+        }
+        .subject-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .subject-card {
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .subject-name {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #000;
+        }
+        .exam-tag {
+            background: #ffedd5;
+            color: #c2410c;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-left: 10px;
+        }
+        .description {
+            margin-top: 8px;
             color: #475569;
-            margin-top: 0.5rem;
-            line-height: 1.5;
+            font-size: 0.95em;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎓 EduGuide CU</h1>
-        <p>Your Academic Companion for CSE at Chandigarh University</p>
-        <p><em>Resources for MST-1, MST-2 & End-Sem Exams — All in One Place</em></p>
+        <header>
+            <h1>🎓 EduGuide CU</h1>
+            <p>Your Academic Companion for CSE at Chandigarh University</p>
+        </header>
+
+        <h2>End Semester (EST) Resources — Semester 1</h2>
+        {% if subjects %}
+            <div class="subject-list">
+                {% for subject in subjects %}
+                <div class="subject-card">
+                    <div>
+                        <span class="subject-name">{{ subject.name }}</span>
+                        <span class="exam-tag">{{ subject.get_exam_type_display }}</span>
+                    </div>
+                    {% if subject.description %}
+                        <div class="description">{{ subject.description }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No EST subjects added yet.</p>
+        {% endif %}
     </div>
 </body>
 </html>
